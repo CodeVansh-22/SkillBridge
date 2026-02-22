@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge India</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+    <div class="logo">SkillBridge 🇮🇳</div>
+    <ul class="nav-links">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        
+        {% if session.get('user_id') %}
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('assessment') }}">Skill Test</a></li>
+            <li><a href="{{ url_for('schemes') }}">Govt Schemes</a></li>
+            <li><a href="{{ url_for('logout') }}" style="color: #fca5a5;">Logout</a></li>
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}" class="btn" style="margin-top: 0; padding: 5px 15px;">Register</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div style="background: #fee2e2; color: #b91c1c; padding: 10px; text-align: center; font-weight: bold;">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+    
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

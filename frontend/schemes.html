@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <h3>Menu</h3>
+        <p><a href="/dashboard" style="text-decoration: none; color: inherit;">📊 Employability Report</a></p>
+        <p style="font-weight: bold; color: var(--primary-color);">🏛️ Eligible Govt Schemes</p>
+    </aside>
+    
+    <main>
+        <h2 style="color: var(--primary-color);">AI Recommended Upskilling Portals</h2>
+        <p>Based on your goal to become a <strong>{{ target_job }}</strong>, the AI has identified these official Indian platforms to learn your missing skills:</p>
+        
+        <div class="card-grid">
+            {% for scheme in schemes %}
+            <div class="card" style="border-top-color: var(--success);">
+                <h3 style="color: var(--primary-color);">{{ scheme.name }}</h3>
+                <p style="margin: 15px 0; color: #555; font-size: 0.95rem;">{{ scheme.description }}</p>
+                <a href="{{ scheme.link }}" target="_blank" class="btn" style="width: 100%; text-align: center; background: var(--success);">Visit Official Portal</a>
+            </div>
+            {% else %}
+            <div class="card" style="text-align: center; grid-column: 1 / -1;">
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;">
+                    Complete a skill assessment first to generate dynamic scheme recommendations.
+                </p>
+                <a href="/assessment" class="btn">Go to Assessment</a>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</div>
+{% endblock %}

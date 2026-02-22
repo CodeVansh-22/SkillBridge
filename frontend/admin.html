@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="padding-top: 2rem;">
+    <h2 style="color: var(--primary-color); margin-bottom: 20px;">National Skill Gap Analytics (Live Data)</h2>
+    
+    <div class="card-grid">
+        <div class="card" style="text-align: center; border-top-color: var(--primary-color);">
+            <h3 style="color: #666;">Total Registered Students</h3>
+            <h1 style="font-size: 3.5rem; color: var(--primary-color); margin: 15px 0;">{{ stats.total_users }}</h1>
+            <p>Users actively upskilling</p>
+        </div>
+        
+        <div class="card" style="text-align: center; border-top-color: var(--success);">
+            <h3 style="color: #666;">Most Common Skill</h3>
+            <h1 style="font-size: 2.5rem; color: var(--success); margin: 15px 0; word-wrap: break-word;">{{ stats.top_skill }}</h1>
+            <p>Highest supply in the local market</p>
+        </div>
+        
+        <div class="card" style="text-align: center; border-top-color: var(--accent-color);">
+            <h3 style="color: #666;">Total Skills Verified</h3>
+            <h1 style="font-size: 3.5rem; color: #d97706; margin: 15px 0;">{{ stats.total_skills_logged }}</h1>
+            <p>Extracted safely by AI</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

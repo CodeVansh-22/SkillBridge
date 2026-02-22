@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="loadingScreen" class="loading-overlay">
+    <div class="spinner"></div>
+    <div class="loading-text">AI is analyzing your resume for this specific role...</div>
+    <p style="color: #666; font-size: 0.9rem;">This may take a few seconds.</p>
+</div>
+
+<div class="card" style="max-width: 600px; margin: 2rem auto; padding: 3rem; text-align: center;">
+    <h2 style="color: var(--primary-color); margin-bottom: 10px;">Upload Your Resume</h2>
+    <p style="color: #666; margin-bottom: 30px;">Tell us your dream job, and our AI will calculate your exact skill gap.</p>
+    
+    <form id="resumeForm" action="{{ url_for('upload_resume') }}" method="POST" enctype="multipart/form-data">
+        
+        <div class="form-group" style="text-align: left; margin-bottom: 20px;">
+            <label style="font-weight: bold; color: var(--primary-color);">What is your target job role?</label>
+            <input type="text" name="target_job" placeholder="e.g. Finance Analyst, Data Scientist, HR Manager" required style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+
+        <div style="border: 2px dashed #ccc; padding: 40px; border-radius: 8px; background: #fafafa; margin-bottom: 20px;">
+            <p style="font-size: 3rem; margin-bottom: 10px;">📄</p>
+            <input type="file" name="resume_file" accept=".pdf" required style="margin-top: 10px;">
+            <p style="font-size: 0.85rem; color: #888; margin-top: 10px;">Only PDF files are supported</p>
+        </div>
+        
+        <button type="submit" class="btn" style="width: 100%; font-size: 1.1rem;">Analyze My Skills</button>
+        
+    </form>
+    </div>
+
+<script>
+    document.getElementById('resumeForm').addEventListener('submit', function() {
+        document.getElementById('loadingScreen').style.display = 'flex';
+    });
+</script>
+{% endblock %}

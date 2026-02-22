@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <h3>Menu</h3>
+        <p>👤 My Profile</p>
+        <p style="font-weight: bold; color: var(--primary-color);">📊 Employability Report</p>
+        <p>🏛️ Eligible Govt Schemes</p>
+        <p>⚙️ Settings</p>
+    </aside>
+    
+    <main>
+        <h2 style="color: var(--primary-color); border-bottom: 2px solid #ccc; padding-bottom: 10px;">Recommended Job Roles & Skill Gaps</h2>
+        
+        <div class="card-grid">
+            {% for item in results %}
+            <div class="card">
+                <h3 style="margin-bottom: 10px;">{{ item.job }}</h3>
+                <p>Employability Score: <strong>{{ 100 - item.gap }}%</strong></p>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: {{ 100 - item.gap }}%"></div>
+                </div>
+                
+                <h4 style="color: var(--danger); margin-top: 15px;">Critical Missing Skills:</h4>
+                <div class="tags-container">
+                    {% for skill in item.missing %}
+                    <span class="tag">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+                
+                <a href="#" class="btn" style="width: 100%; text-align: center;">Find Local Training</a>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</div>
+{% endblock %}
